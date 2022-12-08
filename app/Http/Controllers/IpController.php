@@ -18,7 +18,7 @@ class IpController extends Controller
         ]);
 
         if ($ip->wan->current_ip !== $ip->ip) {
-            $ip->wan()->update([
+            $ip->wan->update([
                 'current_ip' => $ip->ip
             ]);
 
