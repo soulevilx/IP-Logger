@@ -15,7 +15,7 @@ class IpSubscriber
 
         foreach ($event->ip->wan->cloudflares as $cloudflare) {
             $endpoint = $endpoint.'/'.$cloudflare->zone_id.'/dns_records/'.$cloudflare->record_id;
-            dd($client->put(
+            $client->put(
                 $endpoint,
                 [
                     'headers' => [
@@ -27,10 +27,8 @@ class IpSubscriber
                         'content' => $event->ip->ip
                     ]
                 ]
-            )->getBody()->getContents());
+            )->getBody()->getContents();
         }
-
-
     }
 
     public function subscribe($events)
