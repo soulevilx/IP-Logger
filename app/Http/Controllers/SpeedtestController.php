@@ -27,12 +27,7 @@ class SpeedtestController extends Controller
         Wan::where('current_ip', $speedtest->ip)
             //->where('download', '<', $speedtest->download)
             ->update([
-                'download' => $speedtest->download
-            ]);
-
-        Wan::where('current_ip', $speedtest->ip)
-            //->where('upload', '<', $speedtest->upload)
-            ->update([
+                'download' => $speedtest->download,
                 'upload' => $speedtest->upload
             ]);
     }
