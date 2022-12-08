@@ -13,7 +13,7 @@ class IpController extends Controller
     public function store(StoreIpRequest $request)
     {
         $ip = Ip::firstOrCreate([
-            'wan_id' => Wan::where('name', config('wan.name'))->first()->id,
+            'wan_id' => Wan::where('name', $request->input('wan'))->first()->id,
             'ip' => $request->input('ip'),
         ]);
 

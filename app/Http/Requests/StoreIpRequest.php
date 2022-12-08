@@ -25,6 +25,7 @@ class StoreIpRequest extends FormRequest
     {
         return [
             'ip' => 'required|ip',
+            'wan' => 'required|string'
         ];
     }
 }
