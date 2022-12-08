@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Wan extends Model
 {
@@ -26,4 +27,9 @@ class Wan extends Model
         'download' => 'integer',
         'upload' => 'integer',
     ];
+
+    public function cloudflares(): HasMany
+    {
+        return $this->hasMany(Cloudflare::class);
+    }
 }

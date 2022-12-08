@@ -23,11 +23,11 @@ class Speedtest extends Model
     protected $casts = [
         'ip' => 'string',
         'interface' => 'array',
-        'ping'=> 'array',
-        'download'=> 'integer',
-        'download_data'=> 'array',
-        'upload'=> 'integer',
-        'upload_data'=> 'array',
-        'server'=> 'array',
+        'ping' => 'array',
+        'download' => 'integer',
+        'download_data' => 'array',
+        'upload' => 'integer',
+        'upload_data' => 'array',
+        'server' => 'array',
     ];
 }
