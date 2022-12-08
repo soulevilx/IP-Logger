@@ -22,8 +22,7 @@ class IpController extends Controller
                 'current_ip' => $ip->ip
             ]);
 
-            //Event::dispatch(new IpChanged($ip));
-            dd($ip->wan);
+            Event::dispatch(new IpChanged($ip));
         }
     }
 }
