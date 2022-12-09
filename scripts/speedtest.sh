@@ -2,6 +2,6 @@
 
 speedtestData=$(speedtest -f json --output-header -p no)
 
-curl -X POST http://127.0.0.1:8000/api/speedtest -H "Content-Type: application/json"  \
+curl --insecure -X POST https://ip.xcrawler.net/api/speedtest \
 --header 'Content-Type: application/json' \
 --data-raw "$speedtestData"

@@ -2,27 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\IpChanged;
 use App\Http\Requests\StoreIpRequest;
-use App\Models\Ip;
-use App\Models\Wan;
-use Illuminate\Support\Facades\Event;
+use App\Services\IpService;
 
 class IpController extends Controller
 {
-    public function store(StoreIpRequest $request)
+    public function store(StoreIpRequest $request, IpService $service)
     {
-        $ip = Ip::firstOrCreate([
-            'wan_id' => Wan::where('name', $request->input('wan'))->first()->id,
-            'ip' => $request->input('ip'),
-        ]);
-
-        if ($ip->wan->current_ip !== $ip->ip) {
-            $ip->wan->update([
-                'current_ip' => $ip->ip
-            ]);
-
-            Event::dispatch(new IpChanged($ip));
-        }
+        $service->store($request->input('ip'), $request->input('wan'));
     }
 }

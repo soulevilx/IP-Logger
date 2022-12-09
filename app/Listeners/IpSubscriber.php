@@ -3,31 +3,15 @@
 namespace App\Listeners;
 
 use App\Events\IpChanged;
-use GuzzleHttp\Client;
+use App\Services\CloudflareService;
 
 class IpSubscriber
 {
     public function updateCloudflare(IpChanged $event)
     {
-
-        $endpoint = 'https://api.cloudflare.com/client/v4/zones';
-        $client = new Client();
-
+        $service = app(CloudflareService::class);
         foreach ($event->ip->wan->cloudflares as $cloudflare) {
-            $endpoint = $endpoint.'/'.$cloudflare->zone_id.'/dns_records/'.$cloudflare->record_id;
-            $client->put(
-                $endpoint,
-                [
-                    'headers' => [
-                        'Authorization' => 'Bearer '.$cloudflare->token
-                    ],
-                    'json' => [
-                        'type' => $cloudflare->type,
-                        'name' => $cloudflare->name,
-                        'content' => $event->ip->ip
-                    ]
-                ]
-            )->getBody()->getContents();
+            $service->updateDns($cloudflare, $event->ip->ip);
         }
     }
 
