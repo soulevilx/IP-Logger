@@ -5,6 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property array $interface
+ * @property array $ping
+ * @property integer $download
+ * @property array $download_data
+ * @property integer $upload
+ * @property array $upload_data
+ * @property array $server
+ */
 class Speedtest extends Model
 {
     use HasFactory;

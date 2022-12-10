@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $record_id
  * @property string $type
  * @property string $name
+ * @property boolean $proxied
  * App\Models\Cloudflare
  */
 class Cloudflare extends Model
@@ -26,6 +28,7 @@ class Cloudflare extends Model
         'record_id',
         'type',
         'name',
+        'proxied'
     ];
 
     protected $casts =[
@@ -35,5 +38,11 @@ class Cloudflare extends Model
         'record_id'=> 'integer',
         'type'=> 'string',
         'name'=> 'string',
+        'proxied' => 'boolean'
     ];
+
+    public function wan(): BelongsTo
+    {
+        return $this->belongsTo(Wan::class);
+    }
 }

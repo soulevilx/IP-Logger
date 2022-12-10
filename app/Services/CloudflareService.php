@@ -23,7 +23,7 @@ class CloudflareService
                     'type' => $cloudflare->type,
                     'name' => $cloudflare->name,
                     'content' => $ip,
-                    //'proxied' => $cloudflare->proxied
+                    'proxied' => $cloudflare->proxied
                 ]
             ]
         );
