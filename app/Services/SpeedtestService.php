@@ -9,7 +9,7 @@ class SpeedtestService
 {
     public function store(array $attributes)
     {
-        $speedtest = Speedtest::create([
+        Speedtest::create([
             'ip' => $attributes['interface']['externalIp'],
             'interface' => $attributes['interface'],
             'ping' => $attributes['ping'],
@@ -19,14 +19,5 @@ class SpeedtestService
             'upload_data' => $attributes['upload'],
             'server' => $attributes['server'],
         ]);
-
-        /**
-         * Update current speed
-         */
-        Wan::where('current_ip', $speedtest->ip)
-            ->update([
-                'download' => $speedtest->download,
-                'upload' => $speedtest->upload
-            ]);
     }
 }

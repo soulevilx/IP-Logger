@@ -21,7 +21,6 @@ class EventServiceProvider extends ServiceProvider
     ];
 
     protected $subscribe = [
-        IpSubscriber::class
     ];
 
     /**
